@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-export default function Products() {
+export default function Products({products}) {
   const [searchParams, setSearchParams] = useSearchParams();
   console.log(searchParams);
   
@@ -32,39 +32,23 @@ export default function Products() {
             gap: "24px",
           }}
         >
-          <Link to="/products/1">
-          <div
-            style={{
-              width: "200px",
-              height: "240px",
-              backgroundColor: "#068FFF",
-            }}
-          >
-            상품1
-          </div>
-          </Link>
-          <Link to="/products/2">
-          <div
-            style={{
-              width: "200px",
-              height: "240px",
-              backgroundColor: "#068FFF",
-            }}
-          >
-            상품2
-          </div>
-          </Link>
-          <Link to="/products/3">
-          <div
-            style={{
-              width: "200px",
-              height: "240px",
-              backgroundColor: "#068FFF",
-            }}
-          >
-            상품3
-          </div>
-          </Link>
+        {
+          products.map((product) => {
+            return(
+              <Link to={`/products/${product.id}`}>
+              <div
+                style={{
+                  width: "200px",
+                  height: "240px",
+                  backgroundColor: "#068FFF",
+                }}
+              >
+                {product.name}
+              </div>
+              </Link>
+            )
+          })
+        }
         </div>
       </div>
     </>
